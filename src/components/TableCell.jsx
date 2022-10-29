@@ -18,7 +18,7 @@ export const TC = ({ id, item, isSpan, callName }) => {
       setState();
     }
   }, [item]);
-
+  
   return (
     <>
       {isSpan ? (
@@ -26,7 +26,7 @@ export const TC = ({ id, item, isSpan, callName }) => {
       ) : (
         <TableCell align="right" sx={{ cursor: 'pointer' }}>
           {isEdit ? (
-            <input value={state} onChange={handleOnChange} type="text" disabled={!isEdit} />
+            <input value={state??''} onChange={handleOnChange} type="text" disabled={!isEdit} />
           ) : (
             item
           )}

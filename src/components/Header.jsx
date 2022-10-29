@@ -52,27 +52,29 @@ export const Header = () => {
           disabled={isEdit}>
           <EditIcon />
         </IconButton>
-        <div className="headerInput">
-          <label>R =</label>
-          <input
-            value={R}
-            onChange={(e) => dispatch(setR(e.target.value))}
-            placeholder="R"
-            disabled={!isEdit}
-          />
-          <p>(Ом)</p>
-        </div>
-        <div className="headerInput">
-          <label>
-            R<span className="smallSymbol">K</span> =
-          </label>
-          <input
-            value={RK}
-            onChange={(e) => dispatch(setRK(e.target.value))}
-            placeholder="R"
-            disabled={!isEdit}
-          />
-          <p>(Ом)</p>
+        <div className='Column'>
+          <div className="headerInput">
+            <label>R =</label>
+            <input
+              value={R}
+              onChange={(e) => dispatch(setR(e.target.value))}
+              placeholder="R"
+              disabled={!isEdit}
+            />
+            <p>(Ом)</p>
+          </div>
+          <div className="headerInput">
+            <label>
+              R<span className="smallSymbol">K</span> =
+            </label>
+            <input
+              value={RK}
+              onChange={(e) => dispatch(setRK(e.target.value))}
+              placeholder="R"
+              disabled={!isEdit}
+            />
+            <p>(Ом)</p>
+          </div>
         </div>
       </Toolbar>
       <AlertDialog open={open} handleClose={handleClose} />
