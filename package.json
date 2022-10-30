@@ -17,6 +17,8 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
     "react-scripts": "5.0.1",
+    "react-vis": "^1.11.7",
+    "recharts": "^2.1.16",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

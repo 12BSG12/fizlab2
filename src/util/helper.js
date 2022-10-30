@@ -2,7 +2,7 @@ export const createDataFirstTable = (id, F, UR, UK, UC, I) => {
   return { id, F, UR, UK, UC, I };
 };
 
-export const createDataLastTable = (id, i, UK, UC, R, RK) => {
+export const createDataLastTable = (id, i, UK, UC, R, RK, f) => {
   const I = +(i / 1000).toFixed(3);
   const UL = +Math.sqrt(Math.pow(UK, 2) - Math.pow(RK * I, 2)).toFixed(2);
   const UR = +(I * RK).toFixed(3);
@@ -12,15 +12,16 @@ export const createDataLastTable = (id, i, UK, UC, R, RK) => {
   const F = +((Math.atan((XL - XC) / (R + RK)) * 180) / Math.PI).toFixed(2);
   return {
     id,
-    UL: isNaN(UL) ? 0 : +UL,
-    UR: isNaN(UR) ? 0 : +UR,
-    XL: isNaN(XL) ? 0 : +XL,
-    XC: isNaN(XC) ? 0 : +XC,
-    Z: isNaN(Z) ? 0 : +Z,
-    F: isNaN(F) ? 0 : +F,
+    UL: isNaN(UL) ? 0 : UL,
+    UR: isNaN(UR) ? 0 : UR,
+    XL: isNaN(XL) ? 0 : XL,
+    XC: isNaN(XC) ? 0 : XC,
+    Z: isNaN(Z) ? 0 : Z,
+    F: isNaN(F) ? 0 : F,
     mathData: {
       I, UK, UC, R, RK
-    }
+    },
+    f
   };
 };
 

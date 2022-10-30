@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { config } from '../util/helper';
 
 export const Math = () => {
-  const { resultData } = useSelector((state) => state.data);
+  const { resultData, Q } = useSelector((state) => state.data);
   return (
     <MathJaxContext config={config}>
       <div className="gridTable four-column">
@@ -68,6 +68,9 @@ export const Math = () => {
           </div>
         ))}
       </div>
+      <MathJax className="mathJax center">
+        {`$Q=U_{Lрез}/U=${Q.ULsres}/${Q.U}=${Q.res}$`}
+      </MathJax>
     </MathJaxContext>
   );
 };
