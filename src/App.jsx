@@ -9,7 +9,9 @@ import { Graphics } from './components/Graphics';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isClear, data, firstGraphic, thirdGraphic, secondGraphic } = useSelector((state) => state.data);
+  const { isClear, data, firstGraphic, thirdGraphic, secondGraphic } = useSelector(
+    (state) => state.data,
+  );
 
   React.useEffect(() => {
     dispatch(setResultData());
@@ -23,7 +25,11 @@ export const App = () => {
         <>
           <T isLast />
           <Math />
-          <Graphics firstGraphic={firstGraphic} thirdGraphic={thirdGraphic} secondGraphic={secondGraphic}/>
+          <Graphics
+            firstGraphic={firstGraphic}
+            thirdGraphic={thirdGraphic}
+            secondGraphic={secondGraphic}
+          />
         </>
       )}
     </div>

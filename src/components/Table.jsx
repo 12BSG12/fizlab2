@@ -12,7 +12,7 @@ export const T = ({ isFirst, isLast }) => {
     <>
       {isFirst && (
         <TableContainer component={Paper} sx={{ mb: '20px', maxHeight: 450, mt: '80px' }}>
-          <Table sx={{ minWidth: 650 }} size="small" stickyHeader aria-label="sticky table">
+          <Table sx={{ minWidth: 375 }} size="small" stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
                 <TableCell align="center" colSpan={100}>
@@ -39,7 +39,7 @@ export const T = ({ isFirst, isLast }) => {
       )}
       {isLast && (
         <TableContainer component={Paper} sx={{ mb: '20px', maxHeight: 450 }}>
-          <Table sx={{ minWidth: 650 }} size="small" stickyHeader aria-label="sticky table">
+          <Table sx={{ minWidth: 375 }} size="small" stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
                 <TableCell align="center" colSpan={100}>
