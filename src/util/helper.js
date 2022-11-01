@@ -35,3 +35,5 @@ export const config = {
     ],
   },
 };
+
+export const getArray = (arr, x, y) => arr.slice(0, -1).map((item) => ({ x: item[x], y: item[y] }))

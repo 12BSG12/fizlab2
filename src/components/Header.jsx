@@ -5,15 +5,16 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsEdit, setR, setRK } from '../redux/slice/data';
+import { setIsEdit, setIsShow, setR, setRK } from '../redux/slice/data';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import { AlertDialog } from './AlertDialog';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import { Box, Tooltip } from '@mui/material';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
 export const Header = () => {
   const dispatch = useDispatch();
-  const { isEdit, R, RK } = useSelector((state) => state.data);
+  const { isEdit, R, RK, isShow } = useSelector((state) => state.data);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -23,6 +24,7 @@ export const Header = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -32,7 +34,7 @@ export const Header = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            
             onClick={handleClickOpen}>
             <ClearRoundedIcon />
           </IconButton>
@@ -41,7 +43,7 @@ export const Header = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            
             onClick={() => dispatch(setIsEdit(false))}>
             <SaveIcon />
           </IconButton>
@@ -50,10 +52,20 @@ export const Header = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            
             onClick={() => dispatch(setIsEdit(true))}
             disabled={isEdit}>
             <EditIcon />
+          </IconButton>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            
+            onClick={() => dispatch(setIsShow())}
+            disabled={isShow}>
+            <VisibilityOutlinedIcon />
           </IconButton>
           <Box sx={{ flexGrow: 1 }} className="Column">
             <div className="headerInput">
@@ -86,7 +98,7 @@ export const Header = () => {
                 edge="start"
                 color="inherit"
                 aria-label="menu"
-                sx={{ mr: 2 }}>
+                >
                 <TelegramIcon />
               </IconButton>
             </Tooltip>

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { rows } from '../../common/dataTables';
-import { createDataLastTable } from '../../util/helper';
+import { createDataLastTable, getArray } from '../../util/helper';
 
 const initialState = {
   data: rows,
@@ -9,6 +9,7 @@ const initialState = {
   R: 220,
   RK: 17.7,
   isClear: false,
+  isShow: true,
   Q: {
     ULsres: 0,
     U: 7,
@@ -40,7 +41,6 @@ const dataSlice = createSlice({
   initialState,
   reducers: {
     updateData(state, actions) {
-      state.isClear = false;
       const { id, newValue, callName } = actions.payload;
       state.data = state.data.map((item) =>
         item.id === id ? { ...item, ...{ [callName]: +newValue } } : item,
@@ -53,27 +53,20 @@ const dataSlice = createSlice({
       const ULs = +state.resultData[state.resultData.length - 1].UL;
       state.Q.ULsres = ULs;
       state.Q.res = +(ULs / state.Q.U).toFixed(2);
-      state.firstGraphic.UL = state.resultData.slice(0, -1).map((item) => ({
-        x: item.f,
-        y: item.UL,
-      }));
-      state.firstGraphic.UC = state.data.slice(0, -1).map((item) => ({ x: item.F, y: item.UC }));
-      state.firstGraphic.I = state.data.slice(0, -1).map((item) => ({ x: item.F, y: item.I }));
-      state.thirdGraphic.fi = state.resultData
-        .slice(0, -1)
-        .map((item) => ({ x: item.f, y: item.F }));
-      state.secondGraphic.Z = state.resultData
-        .slice(0, -1)
-        .map((item) => ({ x: item.f, y: item.Z }));
-      state.secondGraphic.XL = state.resultData
-        .slice(0, -1)
-        .map((item) => ({ x: item.f, y: item.XL }));
-      state.secondGraphic.XC = state.resultData
-        .slice(0, -1)
-        .map((item) => ({ x: item.f, y: item.XC }));
+
+      state.firstGraphic.UL = getArray(state.resultData, 'f', 'UL');
+      state.firstGraphic.UC = getArray(state.data, 'F', 'UC');
+      state.firstGraphic.I = getArray(state.data, 'F', 'I');
+
+      state.thirdGraphic.fi = getArray(state.resultData, 'f', 'F');
+
+      state.secondGraphic.Z = getArray(state.resultData, 'f', 'Z');
+      state.secondGraphic.XL = getArray(state.resultData, 'f', 'XL');
+      state.secondGraphic.XC = getArray(state.resultData, 'f', 'XC');
     },
     clearData(state) {
       state.isClear = true;
+      state.isShow = false;
       state.data = state.data.map((item) => ({ id: item.id, F: item.F }));
       state.resultData = [];
       state.R = 0;
@@ -81,6 +74,7 @@ const dataSlice = createSlice({
     },
     setIsEdit(state, actions) {
       state.isEdit = actions.payload;
+      if (state.isEdit) state.isShow = false;
     },
     setR(state, actions) {
       state.R = actions.payload;
@@ -88,8 +82,12 @@ const dataSlice = createSlice({
     setRK(state, actions) {
       state.RK = actions.payload;
     },
+    setIsShow(state) {
+      state.isShow = true;
+    },
   },
 });
 
-export const { updateData, setIsEdit, setR, setRK, clearData, setResultData } = dataSlice.actions;
+export const { updateData, setIsEdit, setR, setRK, clearData, setResultData, setIsShow } =
+  dataSlice.actions;
 export default dataSlice.reducer;
