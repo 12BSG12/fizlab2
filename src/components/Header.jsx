@@ -91,7 +91,7 @@ export const Header = () => {
               <p>(Ом)</p>
             </div>
           </Box>
-          <a href="https://t.me/ty235" target="_blank">
+          <a href="https://t.me/ty235" target="_blank" rel="noreferrer noopener">
             <Tooltip title="by Yuuu Fgyy">
               <IconButton
                 size="large"
